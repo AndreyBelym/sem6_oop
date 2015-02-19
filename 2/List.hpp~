@@ -1,0 +1,86 @@
+#ifndef LIST_HPP
+#define LIST_HPP
+#include <cstdlib>
+/*!Класс "односвязный список".*/
+class List {
+    private:
+        /*!Тип "элемент списка".*/
+        struct Elem{
+            char c; //!<значение элемента списка
+            Elem* next;//!<указатель на следующий элемент
+        };
+        Elem *first,//!<указатель на первый элемент списка
+             *last,//!<указатель на последний элемент списка
+             *current;//!<указатель на текущий элемент списка
+    public:
+        /*!Конструктор по умолчанию.*/
+        List();
+        /*!Конструктор по ASCIIZ строке.
+         * \param source исходная строка
+         */
+        List(const char* source);
+        /*!Деструктор класса.*/
+        ~List();
+        /*!Установка значения по ASCIIZ строке.
+         * \param source исходная строка
+         */
+        void FromChar(const char* source);
+        /*!Метод добавления символа в конец списка.
+         */
+        void Append(char new_char);
+        /*!Метод добавления символа в начало списка.
+         */
+        void Prepend(char new_char);
+        /*!Вывод списка на экран.
+         */
+        void Print();
+        /*!Изменяет позицию в списке с текущего элемента
+         * на следующий за ним.
+         */
+        inline void Next();
+        /*!Изменяет позицию в списке с текущего элемента
+         * на начальный элемент.
+         */
+        inline void Reset();
+        /*!Метод получения значения текущего элемента.
+         * \return значение текущего элемента.
+         */
+        inline char Value();
+        /*!Проверяет, достигнут ли конец списка.
+         */
+        inline bool isEnd();
+        /*!Удаляет текущий элемент.
+         * Текущим становится следующий после удаляемого
+         * элемент.
+         */
+        void Delete();
+        /*!Удаляет следующий после текущего элемент.*/
+        void DeleteNext();
+        /*!Вставляет новый элемент на место текущего.
+         * Текущий элемент становится следующим после вставленного.
+         */
+        void Insert(char c);
+        /*!Вставляет новый элемент после текущего.*/
+        void InsertNext(char c);
+};
+
+inline void List::Next(){
+    if(current==NULL)
+        throw;
+    current=current->next;
+}
+
+inline char List::Value(){
+    if(current==NULL)
+        throw;
+    return current->c;
+}
+
+inline void List::Reset(){
+    current=first;
+}
+
+inline bool List::isEnd(){
+    return current==last;
+}
+#endif //LIST_HPP

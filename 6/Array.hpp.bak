@@ -1,0 +1,18 @@
+template <typename T> 
+class Array {
+    private:
+        T *data;
+        int size;
+    public:
+        Array();
+        Array(int len);
+        ~Array();
+        void setLen(int len);
+        int len();
+        T value(int n);
+        void setValue(int n, T value);
+        void strangeSort();
+        T findMin();
+        void Print();
+};
+//#include "Array.cpp"

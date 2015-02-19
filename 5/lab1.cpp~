@@ -1,0 +1,30 @@
+#include "CMPLX.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+    CMPLX a,b;
+    double r;
+    cin>>a;
+    cin>>b;
+    cin>>r;
+    cout<<"a="<<a<<endl;
+    cout<<"b="<<b<<endl;
+    cout<<"r="<<r<<endl;
+    
+    cout<<"a.Sub(b)="<<a.Sub(b)<<endl;
+    cout<<"a-b="<<a-b<<endl;
+
+    cout<<"a.Sub(r)="<<a.Sub(r)<<endl;
+    cout<<"a-r="<<a-r<<endl;
+
+    cout<<"r-a="<<r-a<<endl;
+
+    cout<<"b++="<<b++<<endl;
+    cout<<"b="<<b<<endl;
+    cout<<"++b="<<++b<<endl;
+    cout<<"b="<<b<<endl;
+
+    ++(++r);
+    return 0;
+}

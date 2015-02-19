@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+struct A{
+    int m;
+    A():m(0){};
+    A(const A& a){
+        m=a.m;
+        cout<<"Copy"<<endl;
+    }
+};
+void foo(const A a){
+    cout<<"foo"<<endl;
+}
+int main(){
+    A a;
+    foo(a);
+    return 0;
+}

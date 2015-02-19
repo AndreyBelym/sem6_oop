@@ -1,0 +1,70 @@
+#ifndef IOPARAMS_H
+#define IOPARAMS_H
+#include <ios>
+//!Класс "параметры ввода-вывода".
+class IOParams{
+    int width_,//!<ширина поля вывода
+        precision1_,//!<точность №1 для вывода вещественного числа 
+        precision2_,//!<точность №2 для вывода вещественного числа 
+        precision3_;//!<точность №3 для вывода вещественного числа
+    std::ios::fmtflags flags_;//!<флаги форматирования.
+  public:
+    static const int DEFAULT_WIDTH=5,//!<ширина поля вывода по умолчанию
+              DEFAULT_PRECISION1=4,//!<точность №1 для вывода вещественного числа по умолчанию
+              DEFAULT_PRECISION2=3,//!<точность №2 для вывода вещественного числа по умолчанию
+              DEFAULT_PRECISION3=2;//!<точность №3 для вывода вещественного числа по умолчанию
+    static const std::ios_base::fmtflags DEFAULT_FLAGS=std::ios_base::oct;//!<флаги форматирования по умолчанию
+    /*!Конструктор, задающий параметры форматирования.
+     * \param width ширина поля
+     * \param precision1 точность №1 для вывода вещественного числа
+     * \param precision2 точность №2 для вывода вещественного числа
+     * \param precision3 точность №3 для вывода вещественного числа
+     * \param flags флаги форматирования
+     */
+    IOParams(int width=DEFAULT_WIDTH,
+             int precision1=DEFAULT_PRECISION1,
+             int precision2=DEFAULT_PRECISION2,
+             int precision3=DEFAULT_PRECISION3,
+             std::ios::fmtflags flags=DEFAULT_FLAGS);
+    /*!Получение значения ширины поля вывода
+     * \return значение ширины поля вывода
+     */
+    int width();
+    /*!Установка значения ширины поля вывода
+     * \param width новое значение ширины поля
+     */
+    void setWidth(int width);
+    /*!Получениe значения точности №1 для вывода вещественного числа.
+     * \return значение точности №1
+     */
+    int precision1();
+    /*!Установка значения точности №1 для вывода вещественного числа.
+     * \param precision новое значение точности №1
+     */
+    void setPrecision1(int precision);
+    /*!Получениe значения точность №2 для вывода вещественного числа.
+     * \return значение точности №2
+     */
+    int precision2();
+    /*!Установка значения точности №2 для вывода вещественного числа.
+     * \param precision новое значение точности №2
+     */
+    void setPrecision2(int precision);
+    /*!Получениe значения точности №3 для вывода вещественного числа.
+     * \return значение точности №3
+     */
+    int precision3();
+    /*!Установка значения точности №3 для вывода вещественного числа.
+     * \param precision новое значение точности №3
+     */
+    void setPrecision3(int precision);
+    /*!Получениe значения флагов форматирования.
+     * \return значение флагов форматирования
+     */
+    std::ios::fmtflags flags();
+    /*!Установка значения флагов форматирования.
+     * \param flags новое значение флагов форматирования
+     */
+    void setFlags(std::ios::fmtflags flags);
+};
+#endif //IOPARAMS_H

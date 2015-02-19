@@ -1,0 +1,110 @@
+#include <iostream>
+#include <cmath>
+#include "CMPLX.h"
+#include <typeinfo>
+#include "REAL.h"
+using namespace std;
+CMPLX::CMPLX():re(0),im(0){
+}
+
+
+/*
+CMPLX::CMPLX(float real,float imag){
+    re=real;im=imag;
+    std::cout<<re<<im<<"Конструктор по значению\n";
+}
+*/
+CMPLX::CMPLX(float real,float imag):re(real),im(imag){
+}
+
+CMPLX::CMPLX(const CMPLX &other):re(other.re),im(other.im){
+}
+
+void CMPLX::Setcompl(float r,float i){
+    re=r; im=i;
+}
+
+void CMPLX::Inc(){
+    float r=sqrt(re*re+im*im)+1,phi=atan2(im,re);
+    re=r*cos(phi); im=r*sin(phi);
+}
+
+void CMPLX::Dec(){
+    float r=sqrt(re*re+im*im)-1,phi=atan2(im,re);
+    re=r*cos(phi); im=r*sin(phi);
+}
+
+CMPLX CMPLX::Add(CMPLX what){
+    CMPLX temp;
+    temp.re=re+what.re;
+    temp.im=im+what.im;
+    return temp;
+}
+
+CMPLX CMPLX::Sub(CMPLX what){
+    CMPLX temp;
+    temp.re=re-what.re;
+    temp.im=im-what.im;
+    return temp;
+}
+
+CMPLX CMPLX::Mul(CMPLX what){
+    CMPLX temp;
+    temp.re=re*what.re-im*what.im;
+    temp.im=im*what.re+re*what.im;
+    return temp;
+}
+
+CMPLX CMPLX::Cmul(float what){
+    CMPLX temp;
+    temp.re=re*what;
+    temp.im=im*what;
+    return temp;
+}
+
+CMPLX CMPLX::Div(CMPLX what){
+    CMPLX temp;
+    float denom=what.re*what.re+what.im*what.im;
+    temp.re=(re*what.re+im*what.im)/denom;
+    temp.im=(im*what.re-re*what.im)/denom;
+    return temp;
+}
+
+void CMPLX::Print(){
+    std::cout<<"("<<re<<","<<im<<")"<<std::endl;
+}
+
+NUMBER* CMPLX::Convert(NUMBER& src){
+    CMPLX *c=new CMPLX;
+    if(typeid(src)==typeid(REAL)){
+        REAL& r=dynamic_cast<REAL&> (src);
+        c->re=r.value();
+        return c;
+    } else if (typeid(src)==typeid(CMPLX)){
+        *c=dynamic_cast<CMPLX&>(src);
+        return c;
+    }
+    delete c;
+    return NULL;
+}
+
+NUMBER* CMPLX::Sub(NUMBER& what){
+    return OperationHelper<CMPLX>(what,&CMPLX::Sub);
+    /*    NUMBER *temp;
+    if(temp=Convert(what)){
+        CMPLX *c=dynamic_cast<CMPLX*>(temp),*res=new CMPLX;
+        res->re=this->re-c->re;
+        res->im=this->im-c->im;
+        delete temp;
+        return res;
+    } else if (temp=what.Convert(*this)) {
+        NUMBER* res=temp->Sub(what);
+        delete temp;
+        return res;
+    } else {
+        cerr<<"Cann't do conversion between "
+            <<typeid(this).name()<<" and "
+            <<typeid(what).name()<<"!"<<endl;
+    }
+    return NULL;*/
+}

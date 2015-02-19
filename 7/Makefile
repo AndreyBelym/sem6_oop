@@ -1,0 +1,7 @@
+lab7: IOFormat.o IOParams.o BaseFormatter.o
+IOFormat.o: BaseFormatter.h SimpleFormatter.h SimpleFormatter.cpp ExtendedFormatter.h ExtendedFormatter.cpp
+IOParams.o: IOParams.h
+BaseFormatter.o: BaseFormatter.h
+clean:
+	rm *.o
+	rm lab7

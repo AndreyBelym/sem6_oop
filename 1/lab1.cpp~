@@ -1,0 +1,20 @@
+#include "CMPLX.hpp"
+#include <cstdio>
+int main(){
+    float r=0,i=0;
+    std::cin>>r>>i;
+    CMPLX a;
+    
+    a.Setcompl(r,i);
+
+    std::cin>>r>>i;
+
+
+    CMPLX b(r,i);
+    std::cout<<"1\n";
+    a.Inc();b.Inc();
+    CMPLX c=a.Sub(b);
+    std::cout<<"4\n";
+    return 0;
+
+}

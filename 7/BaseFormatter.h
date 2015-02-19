@@ -1,0 +1,48 @@
+#ifndef BASEFORMATTER_H
+#define BASEFORMATTER_H
+#include <iostream>
+//!Базовый абстрактный класс форматирования ввода вывода.
+class BaseFormatter{
+  public:
+    /*!Виртуальная функция вывода в поток.
+     * \param os поток вывода
+     * \return обработанный поток вывода
+     */
+    virtual std::ostream& printTo(std::ostream& os) const=0;
+    /*!Виртуальная функция ввода из потока.
+     * \param is поток ввода
+     * \return обработанный поток ввода
+     */
+    virtual std::istream& inputFrom(std::istream& is)=0;
+    /*!Оператор вывода в поток.
+     * \param os поток вывода
+     * \param what форматируемый объект
+     * \return обработанный поток вывода
+     */
+    friend
+    std::ostream& operator<<(std::ostream& os,const BaseFormatter& what);
+    /*!Оператор ввода из потока.
+     * \param is поток ввода
+     * \param what форматируемый объект
+     * \return обработанный поток ввода
+     */
+    friend 
+    std::istream& operator>>(std::istream& is,BaseFormatter& what); 
+    /*!Функция вывода в файл.
+     * \param filename имя файла
+     */
+    void toFile(const char* filename)const;
+    /*!Функция ввода из стандартного потока.
+     */
+    void input();
+    /*!Функция вывода в стандартный поток.
+     */
+    void print() const;
+    /*!Функция очистки строки в буфере потока ввода. 
+     * \param is поток ввода
+     */
+    static void clear(std::istream& is);
+    /*!Виртуальный деструктор.*/
+    virtual ~BaseFormatter(){};
+};
+#endif //BASEFORMATTER_H
